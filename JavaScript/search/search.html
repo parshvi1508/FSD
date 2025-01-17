@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Search</title>
+</head>
+<body>
+    <div class="container">
+    <h1>SEARCH Filter</h1>
+    <input type="text" placeholder="Search for item value" id="search">
+    <ul id="list">
+        <li>java</li>
+        <li>JS</li>
+        <li>HTML</li>
+        <li>React</li>
+        <li>Java2</li>
+        <li>springboot</li>
+        <li>Tailwind</li>
+        <li>CSS</li>
+    </ul>
+</div>
+    <script>
+        const searchInput = document.getElementById("search");
+        const itemList = document.getElementById("list");
+        const items = itemList.getElementsByTagName('li');
+
+        searchInput.addEventListener("input", function() {
+            const filter = searchInput.value.toLowerCase();
+            Array.from(items).forEach(function(item) {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = "block";  // Changed from "black" to "block"
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

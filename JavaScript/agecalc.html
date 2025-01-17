@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="agestyle.css">
+</head>
+<body>
+
+    <div class="parent-contain">
+        <h1>Age Calculator</h1>
+        <div class="child1">
+            <table>
+                <tr>
+                    <td colspan="4">
+                        <input type="date" id="dob" placeholder="Enter Date of Birth" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <button onclick="calculateAge()" id="btn-calculate">Calculate Age</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <input type="text" id="result" placeholder="Your Age" readonly>
+                        <p></p>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function calculateAge() {
+            const dob = document.getElementById('dob').value;
+            const resultElement = document.getElementById('result');
+
+            if (!dob) {
+                resultElement.value = "Please select a valid date!";
+                resultElement.style.color = "red";
+                return;
+            }
+            const birthDateObj = new Date(dob);
+            const today = new Date();
+            
+            let years = today.getFullYear() - birthDateObj.getFullYear();
+            let months = today.getMonth() - birthDateObj.getMonth();
+            let days = today.getDate() - birthDateObj.getDate();
+            
+            if (days < 0) {
+                months--;
+                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            }
+            if (months<0){
+                years --;
+                months+=12;
+            }
+            resultElement.value = `You are ${years} years, ${months} months, and ${days} days old`;
+            resultElement.style.color = '#1684e4';
+        }
+       
+    </script>
+
+</body>
+</html>
